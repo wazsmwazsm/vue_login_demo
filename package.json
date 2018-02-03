@@ -1,7 +1,7 @@
 {
-  "name": "community_front_end",
+  "name": "vue_login_demo",
   "version": "1.0.0",
-  "description": "coummunity front end",
+  "description": "vue login demo",
   "author": "shuguang",
   "private": true,
   "scripts": {

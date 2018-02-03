@@ -1,6 +1,6 @@
-# community_front_end
+# vue_login_demo
 
-> coummunity front end
+> vue login demo
 
 ## Build Setup
 
