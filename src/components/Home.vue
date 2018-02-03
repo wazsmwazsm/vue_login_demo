@@ -11,10 +11,7 @@ export default {
   methods: {
     logout () {
       this.$store.commit('logout')
-      this.$router.replace({
-        path: 'login',
-        query: {redirect: this.$router.currentRoute.fullPath}
-      })
+      this.$router.replace({ path: 'login' })
     }
   }
 }
