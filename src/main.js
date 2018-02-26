@@ -2,10 +2,17 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import store from './store/store'
+import store from './store'
 import router from './router'
-import './Lib/http/axios' /* axios */
-import './Lib/ui/elementui' /* ElementUI */
+import './http'
+import './ui'
+
+// when page refresh
+store.dispatch('reloadStore').catch(error => {
+  router.push({
+    path: '/login'
+  })
+})
 
 Vue.config.productionTip = false
 
