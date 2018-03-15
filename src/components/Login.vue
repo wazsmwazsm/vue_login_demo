@@ -15,7 +15,7 @@
                 </el-form-item>
                 <el-form-item>
                   <el-button type="success" @click="login('form')">Login</el-button>
-                  <el-button>Register</el-button>
+                  <el-button @click="register()">Register</el-button>
                 </el-form-item>
               </el-form>
             </el-card>
@@ -58,41 +58,44 @@ export default {
           this.$store.dispatch('login', {
             username: this.form.username,
             password: this.form.password
-          })
-          .then(response => {
-            // remove loading
-            $this.loading = false
-            // redirect
-            let redirect = $this.$router.currentRoute.query.redirect ?
-              decodeURIComponent($this.$router.currentRoute.query.redirect) : '/'
+          }).then(response => {
+              // remove loading
+              $this.loading = false
+              // redirect
+              let redirect = $this.$router.currentRoute.query.redirect ?
+                decodeURIComponent($this.$router.currentRoute.query.redirect) : '/'
 
-            $this.$router.push({
-              path: redirect
+              $this.$router.push({
+                path: redirect
+              })
             })
-          })
-          .catch(error => {
-            // remove loading
-            $this.loading = false
-            // create error message
-            let msg = ''
+            .catch(error => {
+              // remove loading
+              $this.loading = false
+              // create error message
+              let msg = ''
 
-            if (error.response.status == 401) {
-              msg = 'Invalid Login or password.'
-            } else {
-              msg = error.response.status + ' ' + error.response.statusText + ': ' + error.response.data.error
-            }
+              if (error.response.status == 401) {
+                msg = 'Invalid Login or password.'
+              } else {
+                msg = error.response.status + ' ' + error.response.statusText + ': ' + error.response.data.error
+              }
 
-            $this.$message({
-              showClose: true,
-              type: 'error',
-              message: msg
-            });
-          })
+              $this.$message({
+                showClose: true,
+                type: 'error',
+                message: msg
+              })
+            })
         } else { /* validate failed */
-          return false;
+          return false
         }
-      });
-
+      })
+    },
+    register() {
+      this.$router.push({
+        path: '/register'
+      })
     }
   }
 }

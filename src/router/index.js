@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from '@/store'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
+import Register from '@/components/Register'
 import PageNotFound from '@/components/PageNotFound'
 
 Vue.use(Router)
@@ -22,6 +23,19 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+      beforeEnter: (to, from, next) => {
+        if (store.state.loginMoudule.token) {
+          // already login, redirect to home page
+          next({ path: '/' })
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register,
       beforeEnter: (to, from, next) => {
         if (store.state.loginMoudule.token) {
           // already login, redirect to home page

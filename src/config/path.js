@@ -5,6 +5,7 @@ export const apiPath = {
   auth : {
     login : '/api/auth/login',
     logout : '/api/auth/logout',
+    register : '/api/auth/register',
     authToken: '/api/auth/authToken',
     profile: '/api/auth/profile'
   }

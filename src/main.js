@@ -8,15 +8,15 @@ import './http'
 import './ui'
 
 // when page refresh
-store.dispatch('reloadStore').catch(error => {
-  router.push({
-    path: '/login'
+store.dispatch('reloadStore')
+  .catch(error => {
+    if(router.currentRoute.matched.some(record => record.meta.requiresAuth)) {
+      store.dispatch('logout')
+    }
   })
-})
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
